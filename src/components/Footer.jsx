@@ -1,122 +1,111 @@
 import React from 'react';
-import { Mail, MessageCircle, ArrowUp, Sparkles, Shield, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MapPin, Phone, Mail, Globe, ShieldCheck, ArrowUp } from 'lucide-react';
+import DanabidLogo from './DanabidLogo';
+import { COMPANY_INFO } from '../data/estatesData';
 
 export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const targetEmail = 'oladipupofunmilayodorcas@gmail.com';
-
   return (
-    <footer className="bg-slate-950 border-t border-slate-800 text-slate-400 text-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <footer className="bg-gray-50 border-t border-gray-200 text-gray-800 text-[14px]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
           
-          {/* Brand info */}
-          <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-cyan-500/25">
-                <span className="text-xl tracking-tighter">FD</span>
-              </div>
-              <div>
-                <span className="text-lg font-bold text-white block">Funmilayo Dorcas</span>
-                <span className="text-xs text-cyan-400">Digital Marketer & Paid Ads Strategist</span>
-              </div>
-            </div>
-
-            <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
-              Helping businesses build predictable customer acquisition machines through performance-driven ads on Facebook, Instagram, TikTok & direct WhatsApp funnels.
+          {/* Brand info (4 cols) */}
+          <div className="lg:col-span-4 space-y-3">
+            <DanabidLogo className="h-9" />
+            
+            <p className="text-[14px] text-gray-600 leading-normal max-w-sm">
+              Danabid Homes & Properties — Where smart investors find peace of mind. We sell genuine land in plots and acres across Lagos, Ibadan, and Ogun State with instant physical allocation.
             </p>
 
-            <div className="flex items-center gap-3 pt-2">
-              <a
-                href={`mailto:${targetEmail}`}
-                className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-400 hover:border-cyan-400/50 transition-colors"
-                title={`Email: ${targetEmail}`}
-              >
-                <Mail className="w-4 h-4" />
-              </a>
-              <a
-                href="https://wa.me/?text=Hi%20Funmilayo,%20I'm%20interested%20in%20scaling%20my%20business%20with%20ads."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-emerald-400 hover:border-emerald-400/50 transition-colors"
-                title="WhatsApp Direct"
-              >
-                <MessageCircle className="w-4 h-4" />
-              </a>
+            <div className="p-3 rounded-lg bg-white border border-gray-200 text-[13px] text-gray-700 space-y-1">
+              <span className="font-bold text-gray-900 block">Verified Ownership</span>
+              <p className="text-[12px] text-gray-600">
+                100% dry land with registered surveys, deeds of assignment, and zero omo-onile issues.
+              </p>
             </div>
           </div>
 
-          {/* Quick links */}
-          <div className="md:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Navigation</h4>
-            <ul className="space-y-2 text-sm">
+          {/* Quick links (2 cols) */}
+          <div className="lg:col-span-2 space-y-2">
+            <h3 className="text-[15px] font-bold text-gray-900">
+              Quick Links
+            </h3>
+            <ul className="space-y-1.5 text-[14px]">
+              <li><Link to="/" className="text-gray-700 hover:text-emerald-700">Home</Link></li>
+              <li><Link to="/estates" className="text-gray-700 hover:text-emerald-700">All Estates</Link></li>
+              <li><Link to="/promos" className="text-gray-700 hover:text-emerald-700">Promotions</Link></li>
+              <li><Link to="/farmland" className="text-gray-700 hover:text-emerald-700">Danabid Farmland</Link></li>
+              <li><Link to="/calculator" className="text-gray-700 hover:text-emerald-700">Plots & Acres Calculator</Link></li>
+              <li><Link to="/inspection" className="text-gray-700 hover:text-emerald-700">Book Free Inspection</Link></li>
+              <li><Link to="/about" className="text-gray-700 hover:text-emerald-700">About Us</Link></li>
+              <li><Link to="/faq" className="text-gray-700 hover:text-emerald-700">FAQ & Land Guide</Link></li>
+              <li><Link to="/contact" className="text-gray-700 hover:text-emerald-700">Contact & Office</Link></li>
+            </ul>
+          </div>
+
+          {/* Estates sample (3 cols) */}
+          <div className="lg:col-span-3 space-y-2">
+            <h3 className="text-[15px] font-bold text-gray-900">
+              Featured Estates
+            </h3>
+            <ul className="space-y-2 text-[13px] text-gray-600">
               <li>
-                <a href="#platforms" className="hover:text-cyan-400 transition-colors">
-                  Platforms & Services
-                </a>
+                <span className="font-semibold text-gray-900 block">Joy’s Court & Garden (₦1.2M)</span>
+                <span>Fiditi, Oyo-Ibadan Expressway</span>
               </li>
               <li>
-                <a href="#case-studies" className="hover:text-cyan-400 transition-colors">
-                  Case Studies & Proof
-                </a>
+                <span className="font-semibold text-gray-900 block">Queen Estate (₦2.5M / ₦4M)</span>
+                <span>Isara, Lagos-Ibadan Expressway</span>
               </li>
               <li>
-                <a href="#calculator" className="hover:text-cyan-400 transition-colors">
-                  Ad ROI Calculator
-                </a>
+                <span className="font-semibold text-gray-900 block">Danabid Farmland (₦500k / ₦3M)</span>
+                <span>Akanran, Ibadan (15 mins from Ilaji)</span>
               </li>
               <li>
-                <a href="#process" className="hover:text-cyan-400 transition-colors">
-                  The 4-Step Process
-                </a>
+                <span className="font-semibold text-gray-900 block">Honor Estate Phase 2 (₦700k)</span>
+                <span>Ido, Ologuneru-Eleyele Rd, Ibadan</span>
               </li>
               <li>
-                <a href="#faq" className="hover:text-cyan-400 transition-colors">
-                  Frequently Asked Questions
-                </a>
+                <span className="font-semibold text-gray-900 block">Favour's Court Phase 2 (₦2.5M)</span>
+                <span>Ketu Epe, Lagos State</span>
               </li>
             </ul>
           </div>
 
-          {/* Direct Contact info */}
-          <div className="md:col-span-4 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Direct Reach</h4>
-            <div className="space-y-2.5 text-xs text-slate-300">
+          {/* Office contact (3 cols) */}
+          <div className="lg:col-span-3 space-y-2.5">
+            <h3 className="text-[15px] font-bold text-gray-900">
+              Head Office & Hotlines
+            </h3>
+            <div className="space-y-2 text-[13px] text-gray-700">
               <div className="flex items-start gap-2">
-                <Mail className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
-                <div>
-                  <span className="text-slate-400 block">Personal Email:</span>
-                  <a
-                    href={`mailto:${targetEmail}`}
-                    className="font-semibold text-white hover:text-cyan-400 transition-colors"
-                  >
-                    {targetEmail}
-                  </a>
-                </div>
+                <MapPin className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                <span>{COMPANY_INFO.address}</span>
               </div>
 
               <div className="flex items-start gap-2">
-                <MessageCircle className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                <Phone className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-slate-400 block">WhatsApp Priority Chat:</span>
-                  <a
-                    href="https://wa.me/?text=Hi%20Funmilayo,%20I'm%20ready%20to%20run%20ads."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-white hover:text-emerald-400 transition-colors"
-                  >
-                    Click to Open WhatsApp
-                  </a>
+                  <a href={`tel:${COMPANY_INFO.phone1}`} className="block hover:underline">{COMPANY_INFO.phone1}</a>
+                  <a href={`tel:${COMPANY_INFO.phone2}`} className="block hover:underline">{COMPANY_INFO.phone2}</a>
+                  <a href={`tel:${COMPANY_INFO.phone3}`} className="block hover:underline">{COMPANY_INFO.phone3}</a>
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-slate-400 flex items-center gap-2 mt-4">
-                <Shield className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>NDA & Complete Client Confidentiality Guaranteed.</span>
+              <div className="flex items-center gap-2">
+                <Mail className="w-4 h-4 text-emerald-700 shrink-0" />
+                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:underline break-all">{COMPANY_INFO.email}</a>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Globe className="w-4 h-4 text-emerald-700 shrink-0" />
+                <span>{COMPANY_INFO.socialMedia.handle}</span>
               </div>
             </div>
           </div>
@@ -124,13 +113,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <p>© {new Date().getFullYear()} Funmilayo Dorcas. All Rights Reserved.</p>
+        <div className="mt-10 pt-6 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-gray-500">
+          <p>© {new Date().getFullYear()} Danabid Homes and Properties Limited. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <span>Built with React.js & Tailwind CSS</span>
+            <Link to="/contact" className="hover:text-black">Contact Office</Link>
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors flex items-center gap-1.5"
+              className="text-gray-600 hover:text-black flex items-center gap-1 cursor-pointer"
             >
               <ArrowUp className="w-3.5 h-3.5" />
               <span>Back to Top</span>

@@ -1,135 +1,141 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Sparkles, MessageCircle, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import { Phone, Calendar, Menu, X, MessageCircle } from 'lucide-react';
+import DanabidLogo from './DanabidLogo';
+import { COMPANY_INFO } from '../data/estatesData';
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const navLinks = [
-    { name: 'Platforms', href: '#platforms' },
-    { name: 'Case Studies', href: '#case-studies' },
-    { name: 'ROI Calculator', href: '#calculator' },
-    { name: 'Process', href: '#process' },
-    { name: 'FAQ', href: '#faq' },
+    { name: 'Home', path: '/' },
+    { name: 'All Estates', path: '/estates' },
+    { name: 'Promotions', path: '/promos' },
+    { name: 'Farmland', path: '/farmland' },
+    { name: 'Calculator', path: '/calculator' },
+    { name: 'Free Inspection', path: '/inspection' },
+    { name: 'About Us', path: '/about' },
+    { name: 'FAQ', path: '/faq' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-slate-950/85 backdrop-blur-md border-b border-slate-800/80 shadow-2xl py-3.5'
-          : 'bg-transparent py-5'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo / Personal Brand */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform">
-              <span className="text-xl tracking-tighter">FD</span>
-            </div>
-            <div>
-              <div className="font-bold text-lg tracking-tight text-white flex items-center gap-1.5">
-                Funmilayo Dorcas
-                <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Available for new client campaigns" />
-              </div>
-              <p className="text-xs text-cyan-400 font-medium tracking-wide uppercase">
-                Paid Ads & Growth Strategist
-              </p>
-            </div>
-          </a>
+    <header className="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-xs">
+      {/* Top micro bar for quick phone line & promo notice */}
+      <div className="bg-gray-50 border-b border-gray-100 px-4 py-1.5 text-[12px] text-gray-700">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-emerald-700">Hotlines:</span>
+            <a href={`tel:${COMPANY_INFO.phone1}`} className="hover:text-black font-medium">{COMPANY_INFO.phone1}</a>
+            <span className="text-gray-300">|</span>
+            <a href={`tel:${COMPANY_INFO.phone2}`} className="hover:text-black font-medium">{COMPANY_INFO.phone2}</a>
+            <span className="text-gray-300 hidden sm:inline">|</span>
+            <a href={`tel:${COMPANY_INFO.phone3}`} className="hover:text-black font-medium hidden sm:inline">{COMPANY_INFO.phone3}</a>
+          </div>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <div className="hidden md:flex items-center gap-3">
+            <span className="text-gray-600">Free Inspections Every Thursday & Saturday</span>
+            <Link to="/inspection" className="font-bold text-emerald-700 hover:underline">
+              Reserve Seat →
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navbar */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Logo */}
+          <Link to="/" className="flex items-center shrink-0">
+            <DanabidLogo className="h-9 sm:h-10" />
+          </Link>
+
+          {/* Desktop NavList (Flex layout, NO hamburger on big screen) */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-[14px] font-medium text-gray-800">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="hover:text-cyan-400 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-cyan-400 after:transition-all"
+              <NavLink
+                key={link.path}
+                to={link.path}
+                className={({ isActive }) =>
+                  `transition-colors py-1 ${
+                    isActive
+                      ? 'text-emerald-700 font-bold border-b-2 border-emerald-600'
+                      : 'hover:text-emerald-600'
+                  }`
+                }
               >
                 {link.name}
-              </a>
+              </NavLink>
             ))}
+          </nav>
+
+          {/* Desktop Right Action CTA */}
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              to="/inspection"
+              className="px-3.5 py-2 rounded-lg text-[13px] font-bold bg-emerald-700 hover:bg-emerald-800 text-white shadow-xs transition-colors flex items-center gap-1.5"
+            >
+              <Calendar className="w-3.5 h-3.5" />
+              <span>Book Inspection</span>
+            </Link>
           </div>
 
-          {/* Call to Action Button */}
-          <div className="hidden md:flex items-center gap-4">
-            <a
-              href="https://wa.me/?text=Hi%20Funmilayo,%20I'm%20interested%20in%20running%20sponsored%20ads%20for%20my%20business."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-semibold px-3 py-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20 transition-all flex items-center gap-1.5"
+          {/* Mobile Menu Button (ONLY on small screen) */}
+          <div className="flex lg:hidden items-center gap-2">
+            <Link
+              to="/inspection"
+              className="px-2.5 py-1.5 rounded-md text-[12px] font-bold bg-emerald-700 text-white"
             >
-              <MessageCircle className="w-4 h-4 text-emerald-400" />
-              WhatsApp Direct
-            </a>
-            <a
-              href="#contact"
-              className="px-5 py-2.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all flex items-center gap-2 group"
-            >
-              <Sparkles className="w-4 h-4 text-cyan-200 group-hover:rotate-12 transition-transform" />
-              <span>Get Free Ad Audit</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden">
+              Inspect
+            </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 focus:outline-none"
-              aria-label="Toggle navigation menu"
+              className="p-2 rounded-md border border-gray-200 text-gray-700 hover:text-black focus:outline-none"
+              aria-label="Toggle navigation"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5 text-gray-900" />}
             </button>
           </div>
+
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Menu (ONLY on mobile) */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pt-4 pb-6 px-4 bg-slate-900/95 border border-slate-800 rounded-2xl shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200">
-            <div className="flex flex-col gap-3">
+          <div className="lg:hidden border-t border-gray-100 py-3 animate-in fade-in duration-150">
+            <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
+                <NavLink
+                  key={link.path}
+                  to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 text-slate-200 hover:text-cyan-400 font-medium hover:bg-slate-800/60 rounded-lg transition-colors"
+                  className={({ isActive }) =>
+                    `px-3 py-2 rounded-md text-[14px] font-medium transition-colors ${
+                      isActive
+                        ? 'bg-emerald-50 text-emerald-800 font-bold'
+                        : 'text-gray-800 hover:bg-gray-50'
+                    }`
+                  }
                 >
                   {link.name}
-                </a>
+                </NavLink>
               ))}
-              <div className="pt-3 border-t border-slate-800 flex flex-col gap-2">
-                <a
-                  href="#contact"
+
+              <div className="pt-3 mt-2 border-t border-gray-100 flex flex-col gap-2">
+                <Link
+                  to="/inspection"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center py-3 rounded-xl font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg"
+                  className="w-full py-2.5 rounded-lg text-center font-bold text-[13px] bg-emerald-700 text-white"
                 >
-                  Get Free Ad Audit
-                </a>
-                <a
-                  href="https://wa.me/?text=Hi%20Funmilayo,%20I%20am%20interested%20in%20running%20sponsored%20ads%20for%20my%20business."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full text-center py-2.5 rounded-xl font-medium text-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center justify-center gap-2"
-                >
-                  <MessageCircle className="w-4 h-4 text-emerald-400" />
-                  Chat on WhatsApp
-                </a>
+                  Book Free Site Inspection
+                </Link>
               </div>
             </div>
           </div>
         )}
+
       </div>
-    </nav>
+    </header>
   );
 }

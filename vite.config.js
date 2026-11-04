@@ -8,4 +8,10 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    fs: {
+      strict: false,
+      allow: ['..', 'C:/Users/DORCAS/.gemini/antigravity/brain/d153ac53-0df1-4c25-bdea-9c195645710e']
+    }
+  }
 })
