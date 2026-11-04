@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Globe, ShieldCheck } from 'lucide-react';
+import { MapPin, Phone, Mail, Globe } from 'lucide-react';
 import DanabidLogo from './DanabidLogo';
 import { COMPANY_INFO } from '../data/estatesData';
 
