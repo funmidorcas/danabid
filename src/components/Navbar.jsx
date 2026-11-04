@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Phone, Calendar, Menu, X, MessageCircle } from 'lucide-react';
+import { Calendar, Menu, X } from 'lucide-react';
 import DanabidLogo from './DanabidLogo';
-import { COMPANY_INFO } from '../data/estatesData';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'All Estates', path: '/estates' },
-    { name: 'Promotions', path: '/promos' },
+    { name: 'Estates', path: '/estates' },
+    { name: 'Promo', path: '/promos' },
     { name: 'Farmland', path: '/farmland' },
-    { name: 'Calculator', path: '/calculator' },
     { name: 'Free Inspection', path: '/inspection' },
     { name: 'About Us', path: '/about' },
     { name: 'FAQ', path: '/faq' },
@@ -21,27 +19,6 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-xs">
-      {/* Top micro bar for quick phone line & promo notice */}
-      <div className="bg-gray-50 border-b border-gray-100 px-4 py-1.5 text-[12px] text-gray-700">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-emerald-700">Hotlines:</span>
-            <a href={`tel:${COMPANY_INFO.phone1}`} className="hover:text-black font-medium">{COMPANY_INFO.phone1}</a>
-            <span className="text-gray-300">|</span>
-            <a href={`tel:${COMPANY_INFO.phone2}`} className="hover:text-black font-medium">{COMPANY_INFO.phone2}</a>
-            <span className="text-gray-300 hidden sm:inline">|</span>
-            <a href={`tel:${COMPANY_INFO.phone3}`} className="hover:text-black font-medium hidden sm:inline">{COMPANY_INFO.phone3}</a>
-          </div>
-
-          <div className="hidden md:flex items-center gap-3">
-            <span className="text-gray-600">Free Inspections Every Thursday & Saturday</span>
-            <Link to="/inspection" className="font-bold text-emerald-700 hover:underline">
-              Reserve Seat →
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">

@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
-import { MessageCircle, Phone, Calendar, X, Sparkles, Gift } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { MessageCircle, Phone, Calendar, X, Sparkles, Gift, ChevronUp } from 'lucide-react';
 import { COMPANY_INFO } from '../data/estatesData';
 
 export default function FloatingActionButtons() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const getWhatsAppLink = (number, text) => {
     return `https://wa.me/${number.replace('+', '')}?text=${encodeURIComponent(text)}`;
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
-      
+    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">      
       {/* Expanded Quick Options Menu */}
       {menuOpen && (
         <div className="p-3.5 bg-white border border-gray-300 rounded-2xl shadow-xl space-y-2 mb-1 w-64 animate-in fade-in slide-in-from-bottom-2 text-[13px]">
@@ -84,6 +96,18 @@ export default function FloatingActionButtons() {
       >
         {menuOpen ? <X className="w-5 h-5" /> : <MessageCircle className="w-6 h-6" />}
       </button>
+
+      {/* Floating Back to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="w-10 h-10 rounded-full bg-gray-800 hover:bg-black text-white flex items-center justify-center shadow-lg transition-all active:scale-95 cursor-pointer"
+          aria-label="Back to top"
+          title="Back to top"
+        >
+          <ChevronUp className="w-5 h-5" />
+        </button>
+      )}
 
     </div>
   );

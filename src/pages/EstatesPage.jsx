@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { 
   MapPin, 
   Search, 
@@ -13,6 +14,15 @@ import {
 } from 'lucide-react';
 import { ALL_ESTATES, COMPANY_INFO } from '../data/estatesData';
 import PropertyModal from '../components/PropertyModal';
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, delay: i * 0.07, ease: 'easeOut' },
+  }),
+};
 
 export default function EstatesPage() {
   const [searchParams] = useSearchParams();
@@ -135,10 +145,17 @@ export default function EstatesPage() {
         </div>
 
         {/* Estates Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredEstates.map((estate) => (
-            <div
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          initial="hidden"
+          animate="visible"
+        >
+          {filteredEstates.map((estate, i) => (
+            <motion.div
               key={estate.id}
+              custom={i}
+              variants={cardVariants}
+              whileHover={{ y: -4, boxShadow: '0 8px 28px 0 rgba(0,0,0,0.09)' }}
               className="border border-gray-200 rounded-xl overflow-hidden bg-white hover:border-gray-400 transition-all shadow-xs flex flex-col justify-between"
             >
               <div>
@@ -206,9 +223,9 @@ export default function EstatesPage() {
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
 

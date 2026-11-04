@@ -9,7 +9,6 @@ import HomePage from './pages/HomePage';
 import EstatesPage from './pages/EstatesPage';
 import PromosPage from './pages/PromosPage';
 import FarmlandPage from './pages/FarmlandPage';
-import CalculatorPage from './pages/CalculatorPage';
 import InspectionPage from './pages/InspectionPage';
 import AboutPage from './pages/AboutPage';
 import FaqPage from './pages/FaqPage';
@@ -42,7 +41,6 @@ export default function App() {
             <Route path="/estates" element={<EstatesPage />} />
             <Route path="/promos" element={<PromosPage />} />
             <Route path="/farmland" element={<FarmlandPage />} />
-            <Route path="/calculator" element={<CalculatorPage />} />
             <Route path="/inspection" element={<InspectionPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/faq" element={<FaqPage />} />

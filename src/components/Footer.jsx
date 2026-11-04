@@ -1,14 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Globe, ShieldCheck, ArrowUp } from 'lucide-react';
+import { MapPin, Phone, Mail, Globe, ShieldCheck } from 'lucide-react';
 import DanabidLogo from './DanabidLogo';
 import { COMPANY_INFO } from '../data/estatesData';
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <footer className="bg-gray-50 border-t border-gray-200 text-gray-800 text-[14px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -38,10 +34,9 @@ export default function Footer() {
             </h3>
             <ul className="space-y-1.5 text-[14px]">
               <li><Link to="/" className="text-gray-700 hover:text-emerald-700">Home</Link></li>
-              <li><Link to="/estates" className="text-gray-700 hover:text-emerald-700">All Estates</Link></li>
-              <li><Link to="/promos" className="text-gray-700 hover:text-emerald-700">Promotions</Link></li>
+              <li><Link to="/estates" className="text-gray-700 hover:text-emerald-700">Estates</Link></li>
+              <li><Link to="/promos" className="text-gray-700 hover:text-emerald-700">Promo</Link></li>
               <li><Link to="/farmland" className="text-gray-700 hover:text-emerald-700">Danabid Farmland</Link></li>
-              <li><Link to="/calculator" className="text-gray-700 hover:text-emerald-700">Plots & Acres Calculator</Link></li>
               <li><Link to="/inspection" className="text-gray-700 hover:text-emerald-700">Book Free Inspection</Link></li>
               <li><Link to="/about" className="text-gray-700 hover:text-emerald-700">About Us</Link></li>
               <li><Link to="/faq" className="text-gray-700 hover:text-emerald-700">FAQ & Land Guide</Link></li>
@@ -113,18 +108,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-gray-500">
+        <div className="mt-10 pt-6 border-t border-gray-200 text-center text-[13px] text-gray-500">
           <p>© {new Date().getFullYear()} Danabid Homes and Properties Limited. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <Link to="/contact" className="hover:text-black">Contact Office</Link>
-            <button
-              onClick={scrollToTop}
-              className="text-gray-600 hover:text-black flex items-center gap-1 cursor-pointer"
-            >
-              <ArrowUp className="w-3.5 h-3.5" />
-              <span>Back to Top</span>
-            </button>
-          </div>
         </div>
 
       </div>
