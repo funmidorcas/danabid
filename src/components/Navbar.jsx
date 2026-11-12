@@ -31,7 +31,7 @@ export default function Navbar() {
       <div className="navbar__inner">
         {/* Logo */}
         <Link to="/" className="navbar__logo">
-          <img src="/logo.png" alt="Danabid Homes Logo" className="navbar__logo-img" onError={(e) => { e.target.src = "/logo.svg"; }} />
+          <img src="/logo.svg" alt="Danabid Homes Logo" className="navbar__logo-img" />
           <span className="navbar__logo-text">Danabid<span>Homes</span></span>
         </Link>
 

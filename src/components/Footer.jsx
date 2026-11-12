@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__brand">
-          <img src="/logo.png" alt="Danabid Homes Logo" className="footer__logo" onError={(e) => { e.target.src = "/logo.svg"; }} />
+          <img src="/logo.svg" alt="Danabid Homes Logo" className="footer__logo" />
           <p className="footer__tagline">
             Secure · Affordable · Verified
           </p>
